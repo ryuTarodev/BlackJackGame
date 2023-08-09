@@ -11,10 +11,10 @@ public class Deck {
         initializeDeck();
     }
 
-    // .value() hashtable hashmap
+    // .value() hashtable hashmap (like table in python [key, value]),loop in loop,
     private void initializeDeck() {
-        for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
+        for (Suit suit : Suit.values()) { // value of suit = Clubs,Diamonds,Hearts,Spades
+            for (Rank rank : Rank.values()) { // value of rank = 1,2,3,4,5,6,7,8,9,10,j,q,k
                 Card card = new Card(rank, suit);
 
                 deck.add(card);
@@ -40,13 +40,13 @@ public class Deck {
         return firstCard;
     }
 
-    public Card draw(int count) {
-        Card firstCard = null;
-        if (!deck.isEmpty()) {
-            firstCard = deck.get(0);
+    public List<Card> draw(int count) {
+        List<Card> drawCard = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            drawCard.add(deck.get(i));
             deck.remove(0);
         }
-        return firstCard;
+        return drawCard;
     }
 
     public void shuffle() {
@@ -63,34 +63,17 @@ public class Deck {
         return getCardByRank;
     }
 
-    // draw multiple card // fix Later
-    // public Card[] draw(int count) {
-    // Card[] totalDrawCard = new Card[count];
-    // if (!deck.isEmpty()) {
-    // for (int i = 0; i < count; i++) {
-    // totalDrawCard[i] = deck.get(0);
-    // deck.remove(0);
-    // }
-    // }
-    // return totalDrawCard;
-    // }
-
-    // public void add(Card card) {
-    // deck.add(card);
-    // }
-
-    // getter setter
-    // public List<Card> getDeck() {
-    // return deck;
-    // }
-
-    // public void setDeck(List<Card> deck) {
-    // this.deck = deck;
-    // }
-
     @Override
     public String toString() {
         return "Deck [deck=" + deck + "]";
+    }
+
+    public List<Card> getDeck() {
+        return deck;
+    }
+
+    public void setDeck(List<Card> deck) {
+        this.deck = deck;
     }
 
 }
